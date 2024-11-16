@@ -1,3 +1,3 @@
-export function buyCredits() {
+export function buyCredits(): boolean {
   return true;
 }

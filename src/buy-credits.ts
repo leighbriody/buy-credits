@@ -40,7 +40,7 @@ export function useBuyCredits(checkoutData: CreateCheckoutData): {
   buyCredits: () => Promise<void>;
 } {
   console.log("use buy credits called");
-  const stripeVar = new Stripe(checkoutData.stripePublicKey, {
+  const stripeVar = new Stripe(checkoutData.stripeSecretKey, {
     apiVersion: "2024-10-28.acacia",
   });
   console.log("created stripe var");

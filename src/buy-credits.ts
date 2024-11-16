@@ -48,10 +48,13 @@ export function useBuyCredits(checkoutData: CreateCheckoutData): {
   return {
     buyCredits: async () => {
       const response = await createCheckout(checkoutData, stripeVar);
+      console.log("created checkout");
       const stripe = await stripePromise;
+      console.log("creating stripe promise");
       await stripe?.redirectToCheckout({
         sessionId: response.id,
       });
+      console.log("redirected to checkout");
     },
   };
 }

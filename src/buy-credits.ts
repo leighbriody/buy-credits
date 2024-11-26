@@ -39,18 +39,14 @@ export function createCheckout(
 export function useBuyCredits(checkoutData: CreateCheckoutData): {
   buyCredits: () => Promise<void>;
 } {
-  console.log("use buy credits called");
   const stripeVar = new Stripe(checkoutData.stripeSecretKey, {
     apiVersion: "2024-10-28.acacia",
   });
-  console.log("created stripe var");
   const stripePromise = loadStripe(checkoutData.stripePublicKey);
   return {
     buyCredits: async () => {
       const response = await createCheckout(checkoutData, stripeVar);
-      console.log("created checkout");
       const stripe = await stripePromise;
-      console.log("creating stripe promise");
       await stripe?.redirectToCheckout({
         sessionId: response.id,
       });
